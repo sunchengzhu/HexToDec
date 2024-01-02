@@ -35,3 +35,11 @@ function copyToClipboard() {
       console.error('复制失败: ', err);
     });
 }
+
+function copyHexToClipboard() {
+  let outputValue = document.getElementById('hexOutput').value;
+  navigator.clipboard.writeText(outputValue)
+    .catch(err => {
+      console.error('复制失败: ', err);
+    });
+}
