@@ -15,8 +15,14 @@ function convertToDecimal() {
 
   if (hexValue.startsWith('0x')) {
     hexValue = hexValue.substring(2);
-  } else if (hexValue.startsWith('0x0')) {
-    hexValue = hexValue.substring(3);
+  }
+
+  // 使用正则表达式去除前导零
+  hexValue = hexValue.replace(/^0+/, '');
+
+  // 如果字符串为空，则置为 "0"
+  if (hexValue === '') {
+    hexValue = '0';
   }
 
   document.getElementById('decimalOutput').value = BigInt("0x" + hexValue).toString();
