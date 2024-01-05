@@ -4,10 +4,18 @@ document.getElementById('hexInput').addEventListener('keydown', function(event) 
   }
 });
 
+document.getElementById('hexInput').addEventListener('input', function() {
+  convertToDecimal();
+});
+
 document.getElementById('decInput').addEventListener('keydown', function(event) {
   if (event.key === 'Enter') {
     convertToHex();
   }
+});
+
+document.getElementById('decInput').addEventListener('input', function() {
+  convertToHex();
 });
 
 function convertToDecimal() {
