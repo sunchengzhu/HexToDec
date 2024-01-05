@@ -10,6 +10,11 @@ document.getElementById('decInput').addEventListener('input', function () {
 function convertToDecimal() {
   let hexValue = document.getElementById('hexInput').value.toLowerCase();
 
+  if (hexValue === '') {
+    document.getElementById('decimalOutput').value = '';
+    return;
+  }
+
   if (hexValue.startsWith('0x')) {
     hexValue = hexValue.substring(2);
   }
@@ -33,6 +38,11 @@ function convertToDecimal() {
 
 function convertToHex() {
   let decValue = document.getElementById('decInput').value;
+
+  if (decValue === '') {
+    document.getElementById('hexOutput').value = '';
+    return;
+  }
 
   // 使用正则表达式检查是否为有效的10进制数
   if (!/^\d+$/.test(decValue)) {
