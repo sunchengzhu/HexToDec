@@ -1,20 +1,9 @@
-document.getElementById('hexInput').addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    convertToDecimal();
-  }
-});
-
-document.getElementById('hexInput').addEventListener('input', function() {
+// 监听输入变化，自动进行转换
+document.getElementById('hexInput').addEventListener('input', function () {
   convertToDecimal();
 });
 
-document.getElementById('decInput').addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    convertToHex();
-  }
-});
-
-document.getElementById('decInput').addEventListener('input', function() {
+document.getElementById('decInput').addEventListener('input', function () {
   convertToHex();
 });
 
@@ -33,13 +22,29 @@ function convertToDecimal() {
     hexValue = '0';
   }
 
-  document.getElementById('decimalOutput').value = BigInt("0x" + hexValue).toString();
+  // 使用正则表达式检查是否为有效的十六进制数
+  if (!/^[0-9a-f]+$/i.test(hexValue)) {
+    document.getElementById('decimalOutput').value = "请输入合法的16进制数";
+    return;
+  }
+
+  let decimalValue = parseInt(hexValue, 16);
+
+  document.getElementById('decimalOutput').value = decimalValue.toString();
 }
 
 function convertToHex() {
   let decValue = document.getElementById('decInput').value;
 
-  document.getElementById('hexOutput').value = parseInt(decValue, 10).toString(16);
+  // 使用正则表达式检查是否为有效的10进制数
+  if (!/^\d+$/.test(decValue)) {
+    document.getElementById('hexOutput').value = "请输入合法的10进制数";
+    return;
+  }
+
+  let num = parseInt(decValue, 10);
+
+  document.getElementById('hexOutput').value = num.toString(16);
 }
 
 function copyToClipboard() {
