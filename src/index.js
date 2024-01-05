@@ -11,6 +11,12 @@ document.getElementById('decInput').addEventListener('input', function () {
   convertToHex();
 });
 
+// 在文档加载完成后绑定事件监听器
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('convertHexToDecimalButton').addEventListener('click', copyToClipboard);
+  document.getElementById('convertDecimalToHexButton').addEventListener('click', copyHexToClipboard);
+});
+
 function convertToDecimal() {
   let hexValue = document.getElementById('hexInput').value.toLowerCase();
 

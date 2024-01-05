@@ -4,7 +4,7 @@
   "description": "Please visit the website https://web3zhu.cn",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode development"
   },
   "keywords": [],
   "author": "",
