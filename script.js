@@ -28,9 +28,7 @@ function convertToDecimal() {
     return;
   }
 
-  let decimalValue = parseInt(hexValue, 16);
-
-  document.getElementById('decimalOutput').value = decimalValue.toString();
+  document.getElementById('decimalOutput').value = BigInt("0x" + hexValue).toString();
 }
 
 function convertToHex() {
@@ -42,9 +40,7 @@ function convertToHex() {
     return;
   }
 
-  let num = parseInt(decValue, 10);
-
-  document.getElementById('hexOutput').value = num.toString(16);
+  document.getElementById('hexOutput').value = BigInt(decValue).toString(16);
 }
 
 function copyToClipboard() {
