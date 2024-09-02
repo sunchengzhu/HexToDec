@@ -3,47 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>在线16进制转换</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>个人技术分享</title>
+    <link rel="icon" type="image/x-icon" href="/bamboo.ico">
     <style>
         .custom-margin {
             margin-bottom: 5rem;
         }
+        body {
+            padding-top: 1rem;
+        }
     </style>
 </head>
-
 <body>
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 class="text-center mb-4">16进制 ➡️ 10进制</h2>
-            <div class="input-group mb-3">
-                <input type="text" id="hexInput" class="form-control" placeholder="请输入16进制数（支持0x和0x0...开头的数）">
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" id="decimalOutput" class="form-control" readonly>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="convertHexToDecimalButton">复制数值</button>
-                </div>
-            </div>
-
-            <!-- 添加额外的空间 -->
-            <div class="custom-margin"></div>
-
-            <h2 class="text-center mb-4">10进制 ➡️ 16进制</h2>
-            <div class="input-group mb-3">
-                <input type="text" id="decInput" class="form-control" placeholder="请输入10进制数">
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" id="hexOutput" class="form-control" readonly>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="convertDecimalToHexButton">复制数值</button>
-                </div>
-            </div>
+<div class="container">
+    <!-- 导航部分 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <a class="navbar-brand" href="#">技术分享</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="hexToDec.html">在线16进制转换</a>
+                </li>
+            </ul>
         </div>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <!-- 内容可以在这里添加 -->
     </div>
+
+    <!-- 添加额外的空间 -->
+    <div class="custom-margin"></div>
 </div>
 
+<!-- 页脚 -->
 <footer class="footer mt-5 py-3">
     <div class="container text-center">
         <span class="text-muted">
@@ -52,7 +49,6 @@
     </div>
 </footer>
 
-<!-- 引入Webpack打包后的JavaScript文件 -->
 <script src="dist/main.js"></script>
 </body>
 </html>
