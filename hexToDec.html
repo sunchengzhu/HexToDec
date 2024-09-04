@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>在线16进制转换</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="/convert.ico">
     <style>
         .custom-margin {
@@ -18,12 +19,14 @@
         <div class="col-md-8 offset-md-2">
             <h2 class="text-center mb-4">16进制 ➡️ 10进制</h2>
             <div class="input-group mb-3">
-                <input type="text" id="hexInput" class="form-control" placeholder="请输入16进制数（支持0x和0x0...开头的数）">
+                <input type="text" id="hexInput" class="form-control"
+                       placeholder="请输入16进制数（支持0x和0x0...开头的数）">
             </div>
             <div class="input-group mb-3">
                 <input type="text" id="decimalOutput" class="form-control" readonly>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="convertHexToDecimalButton">复制数值</button>
+                    <button class="btn btn-outline-secondary" type="button" id="convertHexToDecimalButton">复制数值
+                    </button>
                 </div>
             </div>
 
@@ -37,7 +40,8 @@
             <div class="input-group mb-3">
                 <input type="text" id="hexOutput" class="form-control" readonly>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="convertDecimalToHexButton">复制数值</button>
+                    <button class="btn btn-outline-secondary" type="button" id="convertDecimalToHexButton">复制数值
+                    </button>
                 </div>
             </div>
         </div>
@@ -52,7 +56,83 @@
     </div>
 </footer>
 
-<!-- 引入Webpack打包后的JavaScript文件 -->
-<script src="dist/main.js"></script>
+<script>
+  // 监听输入变化，自动进行转换
+  document.getElementById('hexInput').addEventListener('input', function () {
+    convertToDecimal();
+  });
+
+  document.getElementById('decInput').addEventListener('input', function () {
+    convertToHex();
+  });
+
+  // 在文档加载完成后绑定事件监听器
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('convertHexToDecimalButton').addEventListener('click', copyToClipboard);
+    document.getElementById('convertDecimalToHexButton').addEventListener('click', copyHexToClipboard);
+  });
+
+  function convertToDecimal() {
+    let hexValue = document.getElementById('hexInput').value.toLowerCase();
+
+    if (hexValue === '') {
+      document.getElementById('decimalOutput').value = '';
+      return;
+    }
+
+    if (hexValue.startsWith('0x')) {
+      hexValue = hexValue.substring(2);
+    }
+
+    // 使用正则表达式去除前导零
+    hexValue = hexValue.replace(/^0+/, '');
+
+    // 如果字符串为空，则置为 "0"
+    if (hexValue === '') {
+      hexValue = '0';
+    }
+
+    // 使用正则表达式检查是否为有效的十六进制数
+    if (!/^[0-9a-f]+$/i.test(hexValue)) {
+      document.getElementById('decimalOutput').value = "请输入合法的16进制数";
+      return;
+    }
+
+    document.getElementById('decimalOutput').value = BigInt("0x" + hexValue).toString();
+  }
+
+  function convertToHex() {
+    let decValue = document.getElementById('decInput').value;
+
+    if (decValue === '') {
+      document.getElementById('hexOutput').value = '';
+      return;
+    }
+
+    // 使用正则表达式检查是否为有效的10进制数
+    if (!/^\d+$/.test(decValue)) {
+      document.getElementById('hexOutput').value = "请输入合法的10进制数";
+      return;
+    }
+
+    document.getElementById('hexOutput').value = BigInt(decValue).toString(16);
+  }
+
+  function copyToClipboard() {
+    let outputValue = document.getElementById('decimalOutput').value;
+    navigator.clipboard.writeText(outputValue)
+      .catch(err => {
+        console.error('复制失败: ', err);
+      });
+  }
+
+  function copyHexToClipboard() {
+    let outputValue = document.getElementById('hexOutput').value;
+    navigator.clipboard.writeText(outputValue)
+      .catch(err => {
+        console.error('复制失败: ', err);
+      });
+  }
+</script>
 </body>
 </html>

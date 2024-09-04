@@ -1,3 +1,3 @@
 ## Usage
 
-Please visit the website https://web3zhu.cn
+Please visit the website https://web3zhu.cn/hexToDec.html
